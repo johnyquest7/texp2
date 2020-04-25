@@ -14,13 +14,11 @@ from PIL import Image
 
 path = Path(__file__).parent
 
-project_root = path.parent
-project_root_absolute = project_root.resolve()
-static_root_absolute = project_root_absolute / "static" 
 
 app = Starlette()
 app.add_middleware(CORSMiddleware, allow_origins=['*'], allow_headers=['X-Requested-With', 'Content-Type'])
-app.mount('/static', StaticFiles(directory=static_root_absolute))
+#app.mount('/static', StaticFiles(directory=static_root_absolute))
+app.mount('/static', StaticFiles(directory='app/static'))
 app.mount('/tmp', StaticFiles(directory='/tmp'))
 
 
